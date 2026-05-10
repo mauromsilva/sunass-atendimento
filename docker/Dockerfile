@@ -154,4 +154,4 @@ WORKDIR /app
 
 EXPOSE 3000
 
-ENTRYPOINT ["docker/entrypoints/rails.sh"]
+CMD ["sh", "-lc", "cd /app && bundle exec rails s -p 3000 -b 0.0.0.0"]
