@@ -26,16 +26,14 @@ services:
       - POSTGRES_PASSWORD=mmsjj23yb!
       - POSTGRES_DATABASE=sunrise
       - SECRET_KEY_BASE=${SERVICE_PASSWORD_64_SECRETKEYBASE}
-      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@w119gq4ig711p8m4hnblofsu:6379
 
     entrypoint: docker/entrypoints/rails.sh
     command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
     expose:
       - "3000"
     depends_on:
-      - redis
       - sidekiq
-      - postgres
     networks:
       - coolify
     ports:
@@ -65,26 +63,13 @@ services:
       - POSTGRES_PASSWORD=mmsjj23yb!
       - POSTGRES_DATABASE=sunrise
       - SECRET_KEY_BASE=${SERVICE_PASSWORD_64_SECRETKEYBASE}
-      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@w119gq4ig711p8m4hnblofsu:6379
     command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
-    depends_on:
-      - postgres
-      - redis
-    networks:
-      - coolify
-
-  redis:
-    image: redis:7-alpine
-    restart: always
-    command: ["sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\""]
-    volumes:
-      - redis:/data
     networks:
       - coolify
 
 volumes:
   storage:
-  redis:
 
 networks:
   coolify:
