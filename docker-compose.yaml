@@ -16,7 +16,7 @@ services:
       - POSTGRES_USERNAME=sunrise
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DATABASE=sunrise
-      - SECRET_KEY_BASE=${SERVICE_PASSWORD_64_SECRETKEYBASE}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
       - REDIS_URL=redis://:${REDIS_PASSWORD}@w119gq4ig711p8m4hnblofsu:6379
     entrypoint: docker/entrypoints/rails.sh
     command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
@@ -41,7 +41,7 @@ services:
       - POSTGRES_USERNAME=sunrise
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DATABASE=sunrise
-      - SECRET_KEY_BASE=${SERVICE_PASSWORD_64_SECRETKEYBASE}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
       - REDIS_URL=redis://:${REDIS_PASSWORD}@w119gq4ig711p8m4hnblofsu:6379
     command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
     networks:
