@@ -10,7 +10,7 @@ services:
       - NODE_ENV=production
       - RAILS_ENV=production
       - INSTALLATION_ENV=docker
-      - FRONTEND_URL=${SERVICE_URL_RAILS}
+      - FRONTEND_URL=https://atendimento.sunriseservice.com.br
       - POSTGRES_HOST=u1c8z1v4ok5wchiudmgspvfz
       - POSTGRES_PORT=5432
       - POSTGRES_USERNAME=sunrise
@@ -35,7 +35,7 @@ services:
       - NODE_ENV=production
       - RAILS_ENV=production
       - INSTALLATION_ENV=docker
-      - FRONTEND_URL=${SERVICE_URL_RAILS}
+      - FRONTEND_URL=https://atendimento.sunriseservice.com.br
       - POSTGRES_HOST=u1c8z1v4ok5wchiudmgspvfz
       - POSTGRES_PORT=5432
       - POSTGRES_USERNAME=sunrise
