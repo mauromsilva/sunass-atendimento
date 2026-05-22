@@ -25,6 +25,13 @@ services:
     networks:
       - coolify
     restart: always
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.chatwoot.rule=Host(`atendimento.sunriseservice.com.br`)
+      - traefik.http.routers.chatwoot.entrypoints=https
+      - traefik.http.routers.chatwoot.tls=true
+      - traefik.http.routers.chatwoot.tls.certresolver=letsencrypt
+      - traefik.http.services.chatwoot.loadbalancer.server.port=3000
 
   sidekiq:
     image: chatwoot/chatwoot:latest
