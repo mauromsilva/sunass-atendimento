@@ -52,5 +52,5 @@ jobs:
             RAILS_ENV=production
             RAILS_SERVE_STATIC_FILES=true
           tags: |
+            ghcr.io/mauromsilva/sunass-atendimento:${{ github.sha }}
             ghcr.io/mauromsilva/sunass-atendimento:latest
-            ghcr.io/mauromsilva/sunass-atendimento:v1.0.0
