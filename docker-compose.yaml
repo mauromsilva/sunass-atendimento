@@ -1,6 +1,6 @@
 version: '3.8'
 
-x-app-image: &app_image ghcr.io/mauromsilva/sunass-atendimento:latest
+x-app-image: &app_image ghcr.io/mauromsilva/sunass-atendimento:9534a8b054ad181a56a8f858efd6feab5610633f
 
 
 
