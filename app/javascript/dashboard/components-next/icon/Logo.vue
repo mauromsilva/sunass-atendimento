@@ -2,6 +2,8 @@
 import { useAttrs } from 'vue';
 import { useMapGetter } from 'dashboard/composables/store';
 
+import logoThumbnail from 'dashboard/assets/images/logo_thumbnail.svg';
+
 const attrs = useAttrs();
 const globalConfig = useMapGetter('globalConfig/get');
 </script>
@@ -16,7 +18,7 @@ const globalConfig = useMapGetter('globalConfig/get');
   <img
     v-else
     v-bind="attrs"
-    src="/brand-assets/logo_thumbnail.svg"
+    :src="logoThumbnail"
     :alt="attrs.alt || 'Sunrise Assistencial'"
   />
 </template>
