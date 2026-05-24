@@ -33,7 +33,8 @@ jobs:
           file: ./docker/Dockerfile
           platforms: linux/amd64
           push: true
-          no-cache: true
+          no-cache: false
+          provenance: false
           build-args: |
             BUNDLE_WITHOUT=development:test
             EXECJS_RUNTIME=Node
