@@ -85,7 +85,7 @@ RUN mkdir -p /app/log
 # generate production assets if production environment
 RUN if [ "$RAILS_ENV" = "production" ]; then \
   SECRET_KEY_BASE=precompile_placeholder RAILS_LOG_TO_STDOUT=enabled bundle exec rake assets:precompile \
-  && rm -rf spec node_modules tmp/cache; \
+  && rm -rf spec  tmp/cache; \
   fi
 
 # Generate .git_sha file with current commit hash
@@ -138,13 +138,23 @@ RUN apk update && apk add --no-cache \
 COPY --from=node /usr/local/bin/node /usr/local/bin/
 COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
 
-RUN if [ "$RAILS_ENV" != "production" ]; then \
-  apk add --no-cache curl \
-  && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+#RUN if [ "$RAILS_ENV" != "production" ]; then \
+#  apk add --no-cache curl \
+#  && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
+#  && ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
+#  && npm install -g pnpm@${PNPM_VERSION} \
+#  && pnpm --version; \
+#  fi
+
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
   && ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
   && npm install -g pnpm@${PNPM_VERSION} \
-  && pnpm --version; \
-  fi
+  && pnpm --version
+
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+
 
 COPY --from=pre-builder /gems/ /gems/
 COPY --from=pre-builder /app /app
